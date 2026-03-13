@@ -214,5 +214,5 @@ Ce projet est sous licence MIT. Vous êtes libre de l'utiliser, le modifier et l
 Merci à tous les membres du NASEY OPTICA CHAPTER qui contribuent au succès de ce projet !
 ---
 
-**Dernière mise à jour** : Mars 2025  
+**Dernière mise à jour** : Mars 2026 
 **Responsable** : NASEY OPTICA CHAPTER - ENSPY
