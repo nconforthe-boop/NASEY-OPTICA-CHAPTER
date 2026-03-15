@@ -1,25 +1,699 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
-
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NASEY OPTICA CHAPTER - ENSPY</title>
-    <meta name="description" content="Site officiel du NASEY OPTICA CHAPTER à l'ENSPY, dédié à la promotion de l'optique et de la photonique.">
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
-  </head>
+    <meta name="description" content="Site officiel du NASEY OPTICA CHAPTER à l'ENSPY">
+    
+    <!-- Tailwind CSS pour le style -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Navigation */
+        .nav-header {
+            background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #fbbf24;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Titres de section */
+        .section-title {
+            color: #1e40af;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(90deg, #1e40af, #3b82f6);
+        }
+        
+        /* Cartes */
+        .info-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
+        }
+        
+        .info-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        /* Cartes d'activités avec bordures colorées */
+        .activity-card-green {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            border-left: 4px solid #10b981;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .activity-card-blue {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            border-left: 4px solid #3b82f6;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .activity-card-purple {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            border-left: 4px solid #a855f7;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Boutons */
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            transform: translateY(-2px);
+        }
+        
+        .btn-accent {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            color: #1e3a8a;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-accent:hover {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            transform: translateY(-2px);
+        }
+        
+        /* Formulaire */
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        
+        /* Carte contact info */
+        .contact-info-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.25rem;
+            border: 1px solid #e5e7eb;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-info-card:hover {
+            border-color: #3b82f6;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: #eff6ff;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #3b82f6;
+            flex-shrink: 0;
+        }
+        
+        /* Animation fade-in */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Mobile menu */
+        .mobile-menu {
+            display: none;
+        }
+        
+        .mobile-menu.active {
+            display: block;
+        }
+        
+        /* Box bleue pour "Comment Devenir Membre" */
+        .member-box {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            border-radius: 12px;
+            padding: 2rem;
+            color: white;
+            text-align: center;
+        }
+        
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+        }
+        
+        /* Titres colorés */
+        .title-green {
+            color: #10b981;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .title-blue {
+            color: #3b82f6;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .title-purple {
+            color: #a855f7;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
 
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-    <script
-      defer
-      src="%VITE_ANALYTICS_ENDPOINT%/umami"
-      data-website-id="%VITE_ANALYTICS_WEBSITE_ID%"></script>
-  </body>
+    <!-- Navigation -->
+    <nav class="nav-header text-white sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="bg-black px-3 py-1.5 rounded">
+                        <span class="text-white font-bold text-sm">OPTICA</span>
+                    </div>
+                    <div>
+                        <h1 class="text-base md:text-lg font-bold leading-tight">NASEY OPTICA CHAPTER</h1>
+                        <p class="text-xs text-gray-300">CHAPTER - ENSPY</p>
+                    </div>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-5 text-sm">
+                    <a href="#home" class="nav-link hover:text-yellow-300 transition font-medium">Accueil</a>
+                    <a href="#about" class="nav-link hover:text-yellow-300 transition font-medium">À propos</a>
+                    <a href="#bureau" class="nav-link hover:text-yellow-300 transition font-medium">Le Bureau</a>
+                    <a href="#join" class="nav-link hover:text-yellow-300 transition font-medium">Nous Rejoindre</a>
+                    <a href="#activities" class="nav-link hover:text-yellow-300 transition font-medium">Activités</a>
+                    <a href="#contact" class="nav-link hover:text-yellow-300 transition font-medium">Contact</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-white" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="mobile-menu md:hidden pt-4 pb-2 border-t border-blue-800 mt-2">
+                <div class="flex flex-col space-y-3 text-sm">
+                    <a href="#home" class="hover:text-yellow-300 transition" onclick="toggleMobileMenu()">Accueil</a>
+                    <a href="#about" class="hover:text-yellow-300 transition" onclick="toggleMobileMenu()">À propos</a>
+                    <a href="#bureau" class="hover:text-yellow-300 transition" onclick="toggleMobileMenu()">Le Bureau</a>
+                    <a href="#join" class="hover:text-yellow-300 transition" onclick="toggleMobileMenu()">Nous Rejoindre</a>
+                    <a href="#activities" class="hover:text-yellow-300 transition" onclick="toggleMobileMenu()">Activités</a>
+                    <a href="#contact" class="hover:text-yellow-300 transition" onclick="toggleMobileMenu()">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
 
+    <!-- Hero Section -->
+    <section id="home" class="relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white py-24 md:py-32">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-5xl font-bold mb-4 fade-in">NASEY OPTICA CHAPTER</h2>
+            <p class="text-lg md:text-xl mb-8 max-w-3xl mx-auto leading-relaxed fade-in" style="transition-delay: 100ms;">
+                Promouvoir l'excellence en optique et photonique à l'École Nationale Supérieure Polytechnique de Yaoundé
+            </p>
+            <a href="#about" class="btn-accent inline-block fade-in" style="transition-delay: 200ms;">
+                Découvrir notre mission
+            </a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-white">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <div class="text-center mb-10">
+                <h2 class="text-2xl md:text-3xl section-title fade-in">À propos du NASEY OPTICA CHAPTER</h2>
+            </div>
+            <div class="space-y-4 text-gray-700 leading-relaxed fade-in">
+                <p>
+                    Le <strong class="text-blue-900">NASEY OPTICA CHAPTER</strong>, basé à l'École Nationale Supérieure Polytechnique de Yaoundé (ENSPY), est un chapitre étudiant affilié à <strong class="text-blue-900">OPTICA</strong>, une organisation mondiale dédiée à l'avancement des sciences de l'optique et de la photonique.
+                </p>
+                <p>
+                    Sous la direction du <strong class="text-blue-900">Dr. Mandeng Mandeng Lucien</strong>, notre mission est de promouvoir la recherche, l'innovation, et la formation dans ces domaines au sein de l'ENSPY et au-delà.
+                </p>
+                <p>
+                    Nous organisons des ateliers, des conférences, et des projets pour sensibiliser les étudiants et les professionnels aux applications de l'optique, allant des télécommunications aux technologies médicales.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bureau Section -->
+    <section id="bureau" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-10">
+                <h2 class="text-2xl md:text-3xl section-title fade-in">Le Bureau du NASEY OPTICA CHAPTER</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto mb-10">
+                <!-- Superviseur -->
+                <div class="info-card fade-in">
+                    <div class="flex items-center mb-3">
+                        <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-user-tie text-blue-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-sm font-semibold text-blue-600 uppercase">Superviseur</h3>
+                        </div>
+                    </div>
+                    <p class="text-base font-semibold text-gray-800">Dr. MANDENG MANDENG LUCIEN</p>
+                    <p class="text-xs text-gray-500 mt-1">Directeur et superviseur du chapitre</p>
+                </div>
+                
+                <!-- Conseiller -->
+                <div class="info-card fade-in" style="transition-delay: 100ms;">
+                    <div class="flex items-center mb-3">
+                        <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-user-graduate text-blue-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-sm font-semibold text-blue-600 uppercase">Conseiller</h3>
+                        </div>
+                    </div>
+                    <p class="text-base font-semibold text-gray-800">Dr. TCHINANG TCHAMEU JOËL DUREL</p>
+                    <p class="text-xs text-gray-500 mt-1">Conseiller académique</p>
+                </div>
+                
+                <!-- Président -->
+                <div class="info-card fade-in" style="transition-delay: 200ms;">
+                    <div class="flex items-center mb-3">
+                        <div class="w-10 h-10 bg-yellow-100 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-crown text-yellow-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-sm font-semibold text-yellow-600 uppercase">Président</h3>
+                        </div>
+                    </div>
+                    <p class="text-base font-semibold text-gray-800">Mr. TCHAGNIA TCHOUDJE LEA ERIC</p>
+                    <p class="text-xs text-gray-500 mt-1">Président du chapitre</p>
+                </div>
+                
+                <!-- Vice-Président -->
+                <div class="info-card fade-in" style="transition-delay: 300ms;">
+                    <div class="flex items-center mb-3">
+                        <div class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-user text-gray-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-sm font-semibold text-gray-600 uppercase">Vice-Président</h3>
+                        </div>
+                    </div>
+                    <p class="text-base font-semibold text-gray-800">Mr. NOUBISSI CHOUPO FRANCK DARNOLD</p>
+                    <p class="text-xs text-gray-500 mt-1">Vice-président du chapitre</p>
+                </div>
+                
+                <!-- Trésorière -->
+                <div class="info-card fade-in" style="transition-delay: 400ms;">
+                    <div class="flex items-center mb-3">
+                        <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-coins text-green-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-sm font-semibold text-green-600 uppercase">Trésorière</h3>
+                        </div>
+                    </div>
+                    <p class="text-base font-semibold text-gray-800">Mme. DJOUNNOU LYNDA PHALONE</p>
+                    <p class="text-xs text-gray-500 mt-1">Gestion des finances</p>
+                </div>
+                
+                <!-- Secrétaire -->
+                <div class="info-card fade-in" style="transition-delay: 500ms;">
+                    <div class="flex items-center mb-3">
+                        <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-file-alt text-purple-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-sm font-semibold text-purple-600 uppercase">Secrétaire</h3>
+                        </div>
+                    </div>
+                    <p class="text-base font-semibold text-gray-800">Mlle. NGOUMEGNE TEMANDJO CONFORTHE</p>
+                    <p class="text-xs text-gray-500 mt-1">Communication et documentation</p>
+                </div>
+            </div>
+            
+            <!-- Rôles et Responsabilités -->
+            <div class="max-w-4xl mx-auto bg-blue-50 p-6 rounded-xl fade-in">
+                <h3 class="text-xl font-bold text-blue-900 mb-3">Rôles et Responsabilités</h3>
+                <p class="text-gray-700 leading-relaxed text-sm">
+                    Chaque membre du bureau joue un rôle crucial dans le succès du chapitre. Le <strong>Superviseur</strong> et le <strong>Conseiller</strong> offrent leur expérience et guident les initiatives du chapitre. Le <strong>Président</strong> dirige les activités, soutenu par le <strong>Vice-Président</strong>. La <strong>Trésorière</strong> gère les finances, et la <strong>Secrétaire</strong> est responsable de la communication et de la documentation.
+                </p>
+                <p class="text-gray-700 leading-relaxed text-sm mt-3">
+                    Ensemble, ils travaillent à la réalisation des objectifs du chapitre, tels que définis dans notre charte.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rejoindre Section -->
+    <section id="join" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-10">
+                <h2 class="text-2xl md:text-3xl section-title fade-in">Rejoindre le NASEY OPTICA CHAPTER</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-8">
+                <!-- Qui Peut Nous Rejoindre -->
+                <div class="info-card fade-in">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-users text-blue-600 text-xl mr-2"></i>
+                        <h3 class="text-lg font-bold text-gray-800">Qui Peut Nous Rejoindre ?</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                        Le NASEY OPTICA CHAPTER accueille chaleureusement toute personne passionnée par l'optique et la photonique.
+                    </p>
+                    <ul class="space-y-2 text-sm text-gray-700">
+                        <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-0.5"></i> Étudiants en Master recherche</li>
+                        <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-0.5"></i> Doctorants</li>
+                        <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-0.5"></i> Titulaires d'un doctorat (Ph.D.)</li>
+                        <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-0.5"></i> Enseignants et étudiants des niveaux 1-5 de l'ENSPY</li>
+                    </ul>
+                </div>
+                
+                <!-- Pourquoi Adhérer -->
+                <div class="info-card fade-in" style="transition-delay: 100ms;">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-lightbulb text-yellow-500 text-xl mr-2"></i>
+                        <h3 class="text-lg font-bold text-gray-800">Pourquoi Adhérer ?</h3>
+                    </div>
+                    <ul class="space-y-3 text-sm text-gray-700">
+                        <li>
+                            <strong class="text-gray-800">Développement des compétences</strong>
+                            <p class="text-gray-600 text-xs mt-0.5">Accédez à des formations et ateliers pratiques</p>
+                        </li>
+                        <li>
+                            <strong class="text-gray-800">Réseautage</strong>
+                            <p class="text-gray-600 text-xs mt-0.5">Rencontrez chercheurs et professionnels</p>
+                        </li>
+                        <li>
+                            <strong class="text-gray-800">Expérience scientifique</strong>
+                            <p class="text-gray-600 text-xs mt-0.5">Participez à des projets de recherche</p>
+                        </li>
+                        <li>
+                            <strong class="text-gray-800">Reconnaissance</strong>
+                            <p class="text-gray-600 text-xs mt-0.5">Recevez des certificats et mises en avant</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Comment Devenir Membre -->
+            <div class="max-w-4xl mx-auto member-box fade-in" style="transition-delay: 200ms;">
+                <h3 class="text-xl font-bold mb-4">Comment Devenir Membre ?</h3>
+                <ol class="space-y-3 text-left max-w-lg mx-auto mb-6">
+                    <li class="flex items-start">
+                        <span class="bg-yellow-400 text-blue-900 w-6 h-6 rounded-full flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                        <span><strong>Manifestez votre intérêt</strong> : Contactez un membre du bureau</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="bg-yellow-400 text-blue-900 w-6 h-6 rounded-full flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                        <span><strong>Inscription annuelle</strong> : Complétez le formulaire d'adhésion</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="bg-yellow-400 text-blue-900 w-6 h-6 rounded-full flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                        <span><strong>Engagement actif</strong> : Participez aux réunions et activités</span>
+                    </li>
+                </ol>
+                <a href="#contact" class="btn-accent inline-block">Contactez-nous pour adhérer !</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Activities Section -->
+    <section id="activities" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-10">
+                <h2 class="text-2xl md:text-3xl section-title fade-in">Activités du NASEY OPTICA CHAPTER</h2>
+            </div>
+            
+            <!-- Activités Régulières -->
+            <div class="max-w-4xl mx-auto mb-10 fade-in">
+                <h3 class="title-green"><i class="fas fa-calendar-repeat"></i> Activités Régulières</h3>
+                
+                <div class="activity-card-green mb-4">
+                    <h4 class="font-bold text-gray-800 mb-1">Rencontre Mensuelle du Chapitre</h4>
+                    <p class="text-xs text-gray-500 mb-2">Chaque dernier jeudi du mois</p>
+                    <p class="text-sm text-gray-700">Présentations scientifiques, discussions sur les projets en cours et planification des activités futures.</p>
+                </div>
+                
+                <div class="activity-card-green">
+                    <h4 class="font-bold text-gray-800 mb-1">Formation Continue sur les Logiciels Scientifiques</h4>
+                    <p class="text-xs text-gray-500 mb-2">Bimestriel</p>
+                    <p class="text-sm text-gray-700">Sessions régulières sur MAPLE, Python, MATLAB et autres outils scientifiques.</p>
+                </div>
+            </div>
+            
+            <!-- Activités à Venir -->
+            <div class="max-w-4xl mx-auto mb-10 fade-in" style="transition-delay: 100ms;">
+                <h3 class="title-blue"><i class="fas fa-calendar-plus"></i> Activités à Venir</h3>
+                
+                <div class="activity-card-blue mb-4">
+                    <h4 class="font-bold text-gray-800 mb-1">Conférence sur les Métamatériaux Optiques</h4>
+                    <p class="text-xs text-gray-500 mb-2">10 Juin 2025 (À confirmer)</p>
+                    <p class="text-sm text-gray-700">Intervention sur les dernières avancées en métamatériaux.</p>
+                </div>
+                
+                <div class="activity-card-blue">
+                    <h4 class="font-bold text-gray-800 mb-1">Journée Portes Ouvertes du NASEY OPTICA CHAPTER</h4>
+                    <p class="text-xs text-gray-500 mb-2">Septembre 2025</p>
+                    <p class="text-sm text-gray-700">Présentation du chapitre, démonstrations et échanges avec les membres.</p>
+                </div>
+            </div>
+            
+            <!-- Archives des Activités Passées -->
+            <div class="max-w-4xl mx-auto fade-in" style="transition-delay: 200ms;">
+                <h3 class="title-purple"><i class="fas fa-archive"></i> Archives des Activités Passées</h3>
+                
+                <div class="activity-card-purple mb-4">
+                    <h4 class="font-bold text-gray-800 mb-1">Séminaire d'introduction à la Photonique Quantique</h4>
+                    <p class="text-xs text-gray-500 mb-2">15 Avril 2025</p>
+                    <p class="text-sm text-gray-700">Un séminaire présenté par le Dr. X sur les bases de la photonique quantique.</p>
+                </div>
+                
+                <div class="activity-card-purple">
+                    <h4 class="font-bold text-gray-800 mb-1">Atelier MATLAB pour l'Optique</h4>
+                    <p class="text-xs text-gray-500 mb-2">20 Mars 2025</p>
+                    <p class="text-sm text-gray-700">Formation pratique sur l'utilisation de MATLAB pour la simulation de systèmes optiques.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-10">
+                <h2 class="text-2xl md:text-3xl section-title fade-in">Nous contacter</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <!-- Formulaire -->
+                <div class="fade-in">
+                    <form onsubmit="event.preventDefault(); sendMessage();">
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Nom</label>
+                            <input type="text" id="name" class="form-input" placeholder="Votre nom" required>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                            <input type="email" id="email" class="form-input" placeholder="Votre email" required>
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                            <textarea id="message" rows="5" class="form-input" placeholder="Votre message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary w-full">
+                            <i class="fas fa-paper-plane mr-2"></i> Envoyer
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Informations de contact -->
+                <div class="space-y-4 fade-in" style="transition-delay: 100ms;">
+                    <div class="contact-info-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800 text-sm mb-1">Localisation</h4>
+                            <p class="text-gray-600 text-xs leading-relaxed">
+                                NASEY OPTICA CHAPTER<br>
+                                École Nationale Supérieure Polytechnique de Yaoundé<br>
+                                Ngoa Ekelle, Yaoundé, Cameroun
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800 text-sm mb-1">Téléphone</h4>
+                            <a href="https://wa.me/+237657770957" class="text-blue-600 text-sm hover:underline">+237 657 770 957 (WhatsApp)</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800 text-sm mb-1">Email</h4>
+                            <a href="mailto:conforthengoumegne@gmail.com" class="text-blue-600 text-sm hover:underline">conforthengoumegne@gmail.com</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800 text-sm mb-1">Superviseur</h4>
+                            <p class="text-gray-600 text-sm">Dr. MANDENG MANDENG LUCIEN</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer text-white py-6">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-sm">&copy; 2025 NASEY OPTICA CHAPTER. Tous droits réservés.</p>
+            <p class="text-xs text-gray-300 mt-1">Affilié à OPTICA et soutenu par l'ENSPY.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Menu mobile
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+        }
+        
+        // Formulaire
+        function sendMessage() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            if(name && email && message) {
+                alert('Merci ' + name + '! Votre message a été envoyé avec succès.');
+                document.getElementById('name').value = '';
+                document.getElementById('email').value = '';
+                document.getElementById('message').value = '';
+            } else {
+                alert('Veuillez remplir tous les champs.');
+            }
+        }
+        
+        // Animation au scroll
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
 </html>
